@@ -46,20 +46,20 @@ const methods = useFormPersist(storageKey);
 
  As default it set the storage option to local storage, but you can set it to sessionStorage aswell.
 ```tsx
-	const methods = useFormPersist({storageKey:"randomKey", storageLocation:sessionStorage});
+const methods = useFormPersist({storageKey:"randomKey", storageLocation:sessionStorage});
 
                          ///or////
 
-    const methods = useFormPersist("randomKey", sessionStorage);
+const methods = useFormPersist("randomKey", sessionStorage);
 ```  
 
 You can also opt-out if you want the dirtystate of fields to be stored or not. 
 ```tsx
-		const methods = useFormPersist({storageKey:"randomKey", storageLocation:sessionStorage,includeDirtyFields:false});
+const methods = useFormPersist({storageKey:"randomKey",includeDirtyFields:false});
 
                          ///or////
                          
-    const methods = useFormPersist("randomKey", sessionStorage,false);
+const methods = useFormPersist("randomKey", sessionStorage,false);
 ```  
 
 
