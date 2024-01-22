@@ -1,10 +1,10 @@
-# `persisting-react-hook-form`
+# `persistant-react-hook-form`
 
 An easy use hook that allow you to store the form data in local storage to refer back to.
 
 # `How to install`
 
-npm i persisting-react-hook-form
+npm i persistant-react-hook-form
 
 # `How to use`
 
@@ -15,7 +15,7 @@ All the functionalities provided by the useForm() functions and hooks remain acc
 
 ```tsx
 
-import { useFormPersist } from "persisting-react-hook-form";
+import { useFormPersist } from "persistant-react-hook-form";
 
 // once imported you will need to add a unique
 
