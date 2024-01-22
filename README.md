@@ -10,37 +10,27 @@ npm i persisting-react-hook-form
 
 simple import the hook and replace it with the current useForm().
 
+All the functionalities provided by the useForm() functions and hooks remain accessible through their conventional practices, such as the method approach.
+
+
 ```tsx
 
 import { useFormPersist } from "persisting-react-hook-form";
 
-once imported you will need to add a unique
+// once imported you will need to add a unique
 
 const storageKey = "form-persistent";
 
 const methods = useFormPersist(storageKey);
 
-			<FormProvider {...methods}>
-				<form
-					onSubmit={methods.handleSubmit(handleFormSubmit)}
-					className="flex gap-2"
-				>
-					<input
-						type="text"
-						{...methods.register("Post")}
-						className="grow bg-slate-400 py-2 px-4 rounded-full"
-					/>
-					<button
-						type="submit"
-						className={`px-8 py-2 bg-emerald-600 rounded-full ${
-							isPostAnimated && "animate-bounce"
-						}`}
-					>
-						Post
-					</button>
-				</form>
-			</FormProvider>
- ```           
+		<FormProvider {...methods}>
+			<form onSubmit={methods.handleSubmit(handleFormSubmit)}>
+				<input type="text" {...methods.register("Post")}/>
+				<button type="submit"> Post </button>
+			</form>
+		</FormProvider>
+ ```   
+
 
  # `Additional Options`
 
