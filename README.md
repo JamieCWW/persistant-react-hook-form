@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# `persisting-react-hook-form`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An easy use hook that allow you to store the form data in local storage to refer back to.
 
-## Available Scripts
+# `How to install`
 
-In the project directory, you can run:
+npm i persisting-react-hook-form
 
-### `npm start`
+# `How to use`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+simple import the hook and replace it with the current useForm().
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```tsx
 
-### `npm test`
+import { useFormPersist } from "persisting-react-hook-form";
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+once imported you will need to add a unique
 
-### `npm run build`
+const storageKey = "form-persistent";
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+const methods = useFormPersist(storageKey);
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+			<FormProvider {...methods}>
+				<form
+					onSubmit={methods.handleSubmit(handleFormSubmit)}
+					className="flex gap-2"
+				>
+					<input
+						type="text"
+						{...methods.register("Post")}
+						className="grow bg-slate-400 py-2 px-4 rounded-full"
+					/>
+					<button
+						type="submit"
+						className={`px-8 py-2 bg-emerald-600 rounded-full ${
+							isPostAnimated && "animate-bounce"
+						}`}
+					>
+						Post
+					</button>
+				</form>
+			</FormProvider>
+ ```           
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+ # `Additional Options`
 
-### `npm run eject`
+ As default it set the storage option to local storage, but you can set it to sessionStorage aswell.
+```tsx
+	const methods = useFormPersist({storageKey:"randomKey", storageLocation:sessionStorage});
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+                         ///or////
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    const methods = useFormPersist("randomKey", sessionStorage);
+```  
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+You can also opt-out if you want the dirtystate of fields to be stored or not. 
+```tsx
+		const methods = useFormPersist({storageKey:"randomKey", storageLocation:sessionStorage,includeDirtyFields:false});
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+                         ///or////
+                         
+    const methods = useFormPersist("randomKey", sessionStorage,false);
+```  
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
